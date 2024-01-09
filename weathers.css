@@ -1,0 +1,89 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body,html{
+    overflow: hidden;
+}
+body{
+    background-image: url("images/szabo-viktor-28ZbKOWiZfs-unsplash.jpg");
+}
+#town{
+    height: 30px;
+    
+}
+#search{
+    background: transparent;
+    border: transparent;
+}
+#search img{
+    width: 20px;
+    height: 20px;
+
+}
+#title{
+    width: 100%;
+    color: skyblue;
+    text-shadow: 10px 5px 5px black;
+    margin: 5% -5%;
+}
+#app{
+    width:25%;
+    position: absolute;
+    top: 30%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-image:transparent;
+    border-radius: 2px;
+}
+#form{
+    width: 100%;
+    margin: 20%;
+}
+#weatherdata{
+    position: relative;
+    margin: 5%; 
+    color: wheat;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+
+}
+#temp{
+    font-size: 2rem;
+}
+#name{
+    font-size: 1.5rem;
+}
+#wind{
+    float: left;
+}
+#container{
+    margin: 10%;
+
+    margin-top: -15%;
+   
+}
+.humidity{
+    margin: 5%;
+
+}
+.wind{
+    margin: 5% 20%;
+    width: 100%;
+}
+#below{
+    display:inline-flex;
+    font-size:20px ;
+}
+#town{
+    border-radius: 5px solid;
+    background: transparent;
+    border-color: black;
+ 
+}
+#town::placeholder{
+    color:black;
+    width: 100%;
+    
+}
