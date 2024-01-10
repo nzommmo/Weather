@@ -35,7 +35,54 @@ async function checkWeather(city){
 
 }
 
+
 search.addEventListener("click",(e)=>{
     e.preventDefault()
     checkWeather(searchbox.value)
 })
+
+
+const api_key = "cce21f82aa764cea87d2ccfeadecd5ec";
+const api_url ='https://api.opencagedata.com/geocode/v1/json';
+var latitude = '52.3877830';
+var longitude = '9.7334394';
+var query = latitude + ',' + longitude;
+var request_url = api_url
++ '?'
++ 'key=' + api_key
++ '&q=' + encodeURIComponent(query)
++ '&pretty=1'
++ '&no_annotations=1';
+
+var request = new XMLHttpRequest();
+request.open('GET', request_url, true);
+
+request.onload = function() {
+    // see full list of possible response codes:
+    // https://opencagedata.com/api#codes
+
+    if (request.status === 200){
+      // Success!
+      var data = JSON.parse(request.responseText);
+      document.getElementById("demo").textContent=(data.results[0].components.city); // print the location
+
+    } else if (request.status <= 500){
+      // We reached our target server, but it returned an error
+
+      console.log("unable to geocode! Response code: " + request.status);
+      var data = JSON.parse(request.responseText);
+      console.log('error msg: ' + data.status.message);
+    } else {
+      console.log("server error");
+    }
+  };
+
+  request.onerror = function() {
+    // There was a connection error of some sort
+    console.log("unable to connect to server");
+  };
+
+  request.send();  // make the request
+
+
+
