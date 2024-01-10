@@ -60,7 +60,6 @@ body{
 }
 #container{
     margin: 10%;
-
     margin-top: -15%;
    
 }
@@ -86,4 +85,33 @@ body{
     color:black;
     width: 100%;
     
+}
+
+@media screen and (max-width:600px)and (max-height:1000px){
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    #app{
+        width:100%;
+        position: fixed;
+        top: 30%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        background-image:transparent;
+        border-radius: 2px;
+    }
+    #title{
+        font-size: 25px;
+        margin: 5% -2%;
+    }
+    .wind{
+        margin: 5% 10%;
+        width: 100%;
+    }
+    #town{
+        font-size: 20px;
+    }
+ 
+
 }
