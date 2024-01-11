@@ -89,7 +89,9 @@ if (navigator.geolocation){
   }
   showWeather()
  
-  setTimeout(showWeather,1000)
+  setTimeout(showWeather,1000);
+  clearTimeout()
+  
   
  
 
