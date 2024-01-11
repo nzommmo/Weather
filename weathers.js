@@ -40,7 +40,7 @@ search.addEventListener("click",(e)=>{
 })
 
 if (navigator.geolocation){
-  navigator.geolocation.watchPosition(check)
+  navigator.geolocation.getCurrentPosition(check)
 }
  function check(position) {
   const latitude = Math.floor(position.coords.latitude);
@@ -87,12 +87,13 @@ if (navigator.geolocation){
   }
 
   }
-  showWeather()
+  showWeather() 
  
-  setTimeout(showWeather,1000);
-  clearTimeout()
   
+ 
+
   
+
  
 
  }
