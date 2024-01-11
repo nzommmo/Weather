@@ -17,72 +17,83 @@ async function checkWeather(city){
         document.getElementById("container").appendChild(weathericon)
     }else if(data.weather[0].main == "Clear"){
         weathericon.src = "images/clear-sky.png"
-        weathericon.style.width="50px"
+        weathericon.style.width="100px"
         document.getElementById("container").appendChild(weathericon)
     }else if(data.weather[0].main == "Rain"){
         weathericon.src = "images/rainy.png"
-        weathericon.style.width="50px"
+        weathericon.style.width="100px"
         document.getElementById("container").appendChild(weathericon)
     }else if(data.weather[0].main == "Drizzle"){
         weathericon.src = "images/drizzle.png"
-        weathericon.style.width="50px"
+        weathericon.style.width="100px"
         document.getElementById("container").appendChild(weathericon)
     }else if(data.weather[0].main == "Mist"){
         weathericon.src = "images/mist.png"
-        weathericon.style.width="50px"
+        weathericon.style.width="100px"
         document.getElementById("container").appendChild(weathericon)
     }
 
 }
-
-
 search.addEventListener("click",(e)=>{
     e.preventDefault()
     checkWeather(searchbox.value)
 })
 
+if (navigator.geolocation){
+  navigator.geolocation.watchPosition(check)
+}
+ function check(position) {
+  const latitude = Math.floor(position.coords.latitude);
+  const longitude = Math.round(position.coords.longitude);
+  
+  const APIURL = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+  fetch(APIURL)
+  .then(response=> response.json())
+  .then(data => {
+    const city =data.name
+  })
 
-const api_key = "cce21f82aa764cea87d2ccfeadecd5ec";
-const api_url ='https://api.opencagedata.com/geocode/v1/json';
-var latitude = '52.3877830';
-var longitude = '9.7334394';
-var query = latitude + ',' + longitude;
-var request_url = api_url
-+ '?'
-+ 'key=' + api_key
-+ '&q=' + encodeURIComponent(query)
-+ '&pretty=1'
-+ '&no_annotations=1';
+  const weathericon1= document.createElement('img')
+  const api_url = `https://api.openweathermap.org/data/2.5/weather?units=metric&lat=${latitude}&lon=${longitude}&appid=${apiKey}`
+  async function showWeather(){
+    const response = await fetch(api_url + `&appid=${apiKey}`)
+    var data = await response.json()
+    
+    document.getElementById("name1").innerHTML=data.name
+    document.getElementById("temp1").innerHTML=Math.round(data.main.temp) + "℃"
+    document.getElementById("humidity1").innerHTML="Humidity:" + data.main.humidity + "%"
+    document.getElementById("wind1").innerHTML="WindSpeed:"+data.wind.speed + "km/h"
 
-var request = new XMLHttpRequest();
-request.open('GET', request_url, true);
+    if(data.weather[0].main == "Clouds"){
+      weathericon1.src="images/cloud.png"
+      weathericon1.style.width="100px"
+      document.getElementById("container1").appendChild(weathericon1)
+  }else if(data.weather[0].main == "Clear"){
+      weathericon1.src = "images/clear-sky.png"
+      weathericon1.style.width="100px"
+      document.getElementById("container1").appendChild(weathericon1)
+  }else if(data.weather[0].main == "Rain"){
+      weathericon1.src = "images/rainy.png"
+      weathericon1.style.width="100px"
+      document.getElementById("container1").appendChild(weathericon1)
+  }else if(data.weather[0].main == "Drizzle"){
+      weathericon1.src = "images/drizzle.png"
+      weathericon1.style.width="100px"
+      document.getElementById("container1").appendChild(weathericon1)
+  }else if(data.weather[0].main == "Mist"){
+      weathericon1.src = "images/mist.png"
+      weathericon1.style.width="100px"
+      document.getElementById("container1").appendChild(weathericon1)
+  }
 
-request.onload = function() {
-    // see full list of possible response codes:
-    // https://opencagedata.com/api#codes
+  }
+  showWeather()
+ 
+  setTimeout(showWeather,1000)
+  
+ 
 
-    if (request.status === 200){
-      // Success!
-      var data = JSON.parse(request.responseText);
-      document.getElementById("demo").textContent=(data.results[0].components.city); // print the location
-
-    } else if (request.status <= 500){
-      // We reached our target server, but it returned an error
-
-      console.log("unable to geocode! Response code: " + request.status);
-      var data = JSON.parse(request.responseText);
-      console.log('error msg: ' + data.status.message);
-    } else {
-      console.log("server error");
-    }
-  };
-
-  request.onerror = function() {
-    // There was a connection error of some sort
-    console.log("unable to connect to server");
-  };
-
-  request.send();  // make the request
-
-
-
+ }
+ check()
+ 
+ 
