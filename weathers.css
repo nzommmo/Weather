@@ -18,8 +18,8 @@ body,html{
 @media (max-width: 575.98px) {
   /* CSS rules for extra small devices */
   #town{
-    width: 200px;
-   margin-left: 10%;
+    width: 100px;
+   margin-left: 1%;
 }
 
 }
